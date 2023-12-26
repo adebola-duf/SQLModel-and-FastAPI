@@ -11,7 +11,7 @@ import pytest
 from fastapi.testclient import TestClient
 from sqlmodel import create_engine, SQLModel, Session
 from sqlmodel.pool import StaticPool
-from better_app import get_session, app
+from app_with_crud_file import get_session, app
 from models import Student
 
 # Use the @pytest.fixture() decorator on top of the function to tell pytest that this is a fixture function (equivalent to a FastAPI dependency).

@@ -22,8 +22,9 @@ def update_student(session: Session, matric_number: str, student_info_to_update:
     db_student = session.get(Student, matric_number)
     if not db_student:
         return None
-    info_to_update = student_info_to_update.model_dump(exclude_unset=True)
-    for key, value in info_to_update.items():
+    student_dict_to_update = student_info_to_update.model_dump(
+        exclude_unset=True)
+    for key, value in student_dict_to_update.items():
         setattr(db_student, key, value)
     session.add(db_student)
     session.commit()

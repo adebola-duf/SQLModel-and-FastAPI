@@ -1,8 +1,7 @@
-from better_app import app
+from app_without_crud_file import app, get_session
 from fastapi.testclient import TestClient
 from sqlmodel import create_engine, SQLModel, Session
 from sqlmodel.pool import StaticPool
-from better_app import get_session
 
 
 def test_create_student():
@@ -11,7 +10,7 @@ def test_create_student():
 
     engine = create_engine("sqlite:///testing.db", echo=True,
                            connect_args={"check_same_thread": False})
-    # Remember that order matters. So when we execute this line, since we imported from better_app, all the codes in this better_app is executed including the one where we put like the Student class
+    # Remember that order matters. So when we execute this line, since we imported from app_with_Crud_file, all the codes in this better_app is executed including the one where we put like the Student class
     SQLModel.metadata.create_all(engine)
 
     # Remember in our app code, all the path operations have a dependency on the get_session funcion. But we don't want to use that session because it is for our production database.

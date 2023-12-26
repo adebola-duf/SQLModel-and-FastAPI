@@ -26,6 +26,7 @@ def session_fixture():  # This is equivalent to a FastAPI dependency function.
     engine = create_engine(
         "sqlite://", connect_args={"check_same_thread": False}, poolclass=StaticPool
     )
+    # Remember that order matters. So when we execute this line, since we imported from app_with_Crud_file, all the codes in this better_app is executed including the one where we put like the Student class
     SQLModel.metadata.create_all(engine)
     with Session(engine) as session:
         yield session
